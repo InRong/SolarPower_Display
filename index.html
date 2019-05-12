@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Alma Lane Power Readings</title>
+		<style type="text/css">
+			#chart-container {
+				width: 90%;
+				height: auto;
+				z-index: 10;
+			}
+			#buttons {
+				float: right;
+				width: 12em;
+				#width: 12%;
+				position: fixed;
+				right:0;
+			}
+			.thebuttons {
+				margin-top:1em;
+			}
+			.modal {
+				display:    none;
+				position:   fixed;
+				z-index:    1000;
+				top:        0;
+				left:       0;
+				height:     100%;
+				width:      100%;
+				background: rgba( 255, 255, 255, .8 ) 
+				  	     url('ajax-loader.gif') 
+				             50% 50% 
+					     no-repeat;
+				background-size: 25% 25%;
+			}
+
+			/* When the body has the loading class, we turn
+			   the scrollbar off with overflow:hidden 
+			body.loading {
+			       overflow: hidden;   
+			} */
+			body .modal {
+				display: hidden;
+			} 
+
+			/* Anytime the body has the loading class, our
+			   modal element will be visible */
+			body.loading .modal {
+			      display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Power details for <span id="TitleDate">Now</span></h1>
+		<div class="modal"></div>
+		<div id="buttons">
+			<button class="thebuttons" onclick=get_data("1000")>Last 10min</button>
+			<br>
+			<button class="thebuttons" onclick=get_data("10000")>Last 1hr</button>
+			<br>
+			<button class="thebuttons" onclick=get_data("TODAY")>Today</button>
+			<br>
+			<button class="thebuttons" onclick=previousDay()>Previous</button>
+			<br>
+			<button class="thebuttons" onclick=nextDay()>Next</button>
+			<p>
+			<label class="thebuttons">Select Date:</label><br><input type="date" onchange=newdate(self)>
+			</p>
+		</div>
+		<div id="chart-container">
+			<h2>Power used</h2>
+			<div>Max: <span id="MaxUsed">0</span> Min: <span id="MinUsed">0</span></div>
+			<canvas id="usedcanvas"></canvas>
+			<h2>Power generated</h2>
+			<div>Max:<span id="MaxGen">0</span> Min:<span id="MinGen">0</span></div>
+			<canvas id="gencanvas"></canvas>
+			<h2>Power difference</h2>
+			<div>Max:<span id="MaxExport">0</span> Min:<span id="MinExport">0</span></div>
+			<canvas id="gridcanvas"></canvas>
+		</div>
+
+		<!-- javascript -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/Chart.min.js"></script>
+		<script type="text/javascript" src="js/data2.js"></script>
+	</body>
+</html>

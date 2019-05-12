@@ -1,0 +1,8 @@
+<?php
+//
+//database details
+define('DB_HOST', '192.168.1.1');
+define('DB_USERNAME', 'db_user');
+define('DB_PASSWORD', 'db_password');
+define('DB_NAME', 'db_name');
+?>
